@@ -1,0 +1,57 @@
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary  bg-dark border-bottom border-body" data-bs-theme="dark">
+      <div class="container-fluid">    
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" >Profile</a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" >Leagues</a>
+            </li>    
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page"  routerLink="/events" routerLinkActive="active">Event List</a>
+            </li>     
+          </ul>
+          <form class="d-flex" role="search">        
+            <a class="text-danger fs-6" routerLink="/logout" routerLinkActive="active" type="submit">Logut</a>
+          </form>      
+        </div>
+      </div>
+    </nav>
+    <div >
+    <img id="container" class="position-absolute bottom-0 start-50 translate-middle-x mt-5" src="{{image}}" alt="">
+<form [formGroup]="addEventForm" class="position-absolute top-50 start-50 translate-middle ms-2 w-75">
+    <div class="text-center text-success" id="success" *ngIf="responseMessage">{{ responseMessage }}</div>
+    <div class=" w-100">
+        <label for="exampleInputEmail1" class="form-label ">Event Name</label>
+        <input type="text" class="form-control" id="eventName"  formControlName="eventName">     
+      </div>
+    <div class=" w-100">
+      <label for="exampleInputEmail1" class="form-label ">Event Date</label>
+      <input type="date" class="form-control" id="eventDate" placeholder="Enter your Email" formControlName="eventDate">     
+    </div>
+    <div class=" w-100">
+      <label for="exampleInputPassword1" class="form-label ">Event Time</label>
+      <input type="time" class="form-control" name="eventTime" id="eventTime"  formControlName="eventTime">
+    </div>
+    <div class=" w-100">
+      <label for="exampleInputPassword1" class="form-label ">Event Location</label>
+       <input type="text" class="form-control" name="eventLocation" id="eventLocation"  formControlName="eventLocation">
+    </div>
+    <div class=" w-100">
+        <label for="exampleInputPassword1" class="form-label ">Event Capacity</label>
+        <input type="text" class="form-control" name="capacity" id="capacity" formControlName="capacity">
+    </div>
+    
+    <button type="submit" class="btn btn-primary position-relative top-0 start-50 translate-middle mt-5" (click)="addEvent()" >Create Event</button>  
+    
+  </form>
+</div>
+</body>
+
+    

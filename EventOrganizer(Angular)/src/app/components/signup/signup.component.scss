@@ -1,0 +1,83 @@
+body{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to right top, #ffffff, #f0f0f0, #e1e1e2, #d2d2d4, #c3c4c6, #bbbcbe, #b3b4b6, #abacae, #a8a9aa, #a5a5a6, #a2a2a3, #9f9f9f);
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
+   
+}
+#container{
+    width: 30%;
+    height: auto;   
+}
+
+#success{
+    color: #1bc405;
+    font-size: 20px;
+    -webkit-text-stroke: 1px rgb(157, 255, 0);
+}
+
+#errorMessage{
+    color: #ff2903;
+    font-size: 20px;
+    
+}
+
+/* Styles for Extra Small Devices (Phones) */
+@media (max-width: 576px) {
+    /* Your CSS styles for extra small devices go here */
+}
+
+/* Styles for Small Devices (Tablets) */
+@media (min-width: 576px) {
+    /* Your CSS styles for small devices go here */
+}
+
+/* Styles for Medium Devices (Desktops) */
+@media (min-width: 768px) {
+    .form-control{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+    }
+    #container{
+        width: 30%;
+        height: auto;
+        
+       
+    }
+}
+
+/* Styles for Large Devices (Desktops) */
+@media (min-width: 992px) {
+    .form-control{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+    }
+    #container{
+        width: 30%;
+        height: auto;
+        
+       
+    }
+}
+
+/* Styles for Extra Large Devices (Large Desktops) */
+@media (min-width: 1200px) {
+    .form-control{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 25%;
+    }
+    #container{
+        width: 10%;
+        height: auto;
+        
+       
+    }
+}

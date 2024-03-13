@@ -1,0 +1,97 @@
+body{
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, #656669, #818588, #9fa6a6, #c1c8c4, #e7e9e2);
+    background-size:contain;
+    background-position: center;
+    background-repeat: no-repeat;
+   
+}
+#container{
+    width: 30%;
+    height: auto;   
+}
+
+#success{
+    color: #85f876;
+    font-size: 25px;
+    -webkit-text-stroke: 1px rgb(0, 255, 0);
+    
+}
+
+/* Styles for Extra Small Devices (Phones) */
+@media (max-width: 576px) {
+    /* Your CSS styles for extra small devices go here */
+}
+
+/* Styles for Small Devices (Tablets) */
+@media (min-width: 576px) {
+    /* Your CSS styles for small devices go here */
+}
+
+/* Styles for Medium Devices (Desktops) */
+@media (min-width: 768px) {
+    .form-control{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+    }
+    #container{
+        width: 30%;
+        height: auto;
+        
+       
+    }
+    .form-label{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 25%;
+    }
+}
+
+/* Styles for Large Devices (Desktops) */
+@media (min-width: 992px) {
+    .form-control{
+        position: relative;
+        
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+    }
+    #container{
+        width: 30%;
+        height: auto;
+        
+       
+    }
+    .form-label{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 25%;
+    }
+}
+
+/* Styles for Extra Large Devices (Large Desktops) */
+@media (min-width: 1200px) {
+    .form-control{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 25%;
+    }
+    #container{
+        width: 10%;
+        height: auto;
+        
+       
+    }
+    .form-label{
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 25%;
+    }
+}

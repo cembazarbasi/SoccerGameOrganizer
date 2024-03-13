@@ -1,0 +1,71 @@
+  
+<body >
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary  bg-dark border-bottom border-body" data-bs-theme="dark">
+    <div class="container-fluid">    
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page">Profile</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" >Leagues</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/events" routerLinkActive="active">Event List</a>
+          </li>              
+        </ul>
+        <form class="d-flex" role="search">        
+          <a class="text-danger fs-6" routerLink="/logout" routerLinkActive="active" type="submit">Logut</a>
+        </form>      
+      </div>
+    </div>
+  </nav>
+    <div class="container custom-container1">
+      <h3 class="text-center">{{ event.eventName }}</h3> 
+    <table class="table  table-striped  " *ngIf="event" style="width: 100%; ">  
+      <tbody class="table-group-divider">
+        <tr>
+          <th scope="row">Date</th>
+          <td>{{ event.eventDate }}</td>      
+        </tr>
+        <tr>
+          <th scope="row">Time</th>
+          <td>{{ event.eventTime }}</td>      
+        </tr>
+        <tr>
+          <th scope="row">Location</th>
+          <td ><a class="text-success" href="https://maps.app.goo.gl/tGVTXEWKxaJkv9GD7">{{ event.eventLocation }}</a></td>
+          
+        </tr>
+        <tr>
+          <th scope="row">Capacity</th>
+          <td >{{ event.capacity }}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="container custom-container">
+      <h3 class="text-center mt-5">Player List</h3>
+      <table class="table text-center  " style="width: 100%;">
+        
+        <tbody class="table-group-divider">
+          <tr *ngFor="let email of rsvpList ; let i = index" class="text-center">
+            
+            <td> <strong>{{i+1}}-</strong> {{ email }}</td>        
+          </tr>      
+        </tbody>    
+      </table>
+        <div class="text-center">   
+          <button class="btn btn-outline-success"  (click)="onRsvp()" [disabled]="rsvpList.length >= event.capacity">RSVP</button>
+          <button class="btn btn-outline-danger ms-4"  (click)="cancelRsvp()">Cancel</button>
+          <p class="mt-3 text-success" *ngIf="responseMessage">{{responseMessage}}</p>
+          <p class="mt-3 text-danger" *ngIf="cancelMessage">{{cancelMessage}}</p>
+        </div> 
+    </div>
+   
+</body>

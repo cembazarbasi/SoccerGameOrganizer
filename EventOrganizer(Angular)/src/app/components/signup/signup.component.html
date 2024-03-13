@@ -1,0 +1,60 @@
+<body>
+    
+    
+    
+<form [formGroup]="signupForm" class="position-absolute top-50 start-50 translate-middle ms-2 w-75">
+  <img id="container" class="position-relative bottom-0 start-50 translate-middle-x mt-5" src="{{image}}" alt="">
+  <h4 class="text-center">Create an Account</h4>
+    <div class="text-center text-success" id="success" *ngIf="responseMessage">{{ responseMessage }}</div>
+    
+    <div class="text-center text-danger" id="errorMessage" *ngIf="errorMessage">{{ errorMessage }}</div>
+    <div class="mb-1 w-100 p-3 text-center">       
+        <input type="text" class="form-control" id="firstName" placeholder="First Name*" formControlName="firstName" required>     
+    </div>      
+    
+      <div class="mb-1 w-100 p-3 text-center">       
+        <input type="text" class="form-control" id="lastName" placeholder="Last Name*" formControlName="lastName" required>     
+      </div>      
+
+
+    <div class="mb-1 w-100 p-3 text-center">
+        <select class="form-select form-control" id="city" aria-label="Default select example"  formControlName="city"  required> 
+          <option value="" disabled selected>Select Your City*</option>
+          <option  *ngFor="let city of cities" [value]="city">{{ city }} </option>
+        </select>
+    </div>
+
+    <div class="mb-1 w-100 p-3 text-center">      
+      <input type="email" class="form-control" id="email" placeholder="Email*" formControlName="email" required>     
+    </div>
+    <div class="mb-1 w-100 p-3 text-center">
+     
+      <input type="password" class="form-control" name="password" id="password" placeholder="Create a Password*" formControlName="password" required>
+    </div>
+    <div class="mb-1 w-100 p-3 text-center">        
+        <input type="password" class="form-control" name="password" id="password" placeholder="Confirm Password*" formControlName="confirmPassword" required>
+    </div>
+    <div class="text-center mb-3 text-danger" *ngIf="signupForm.hasError('passwordMismatch')">
+        Passwords do not match.
+    </div>
+    <button type="submit" class="btn btn-primary position-relative top-0 start-50 translate-middle mt-3" (click)="signup()" [disabled]="signupForm.invalid">Register</button>  
+    
+  </form>
+  
+  
+  
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
