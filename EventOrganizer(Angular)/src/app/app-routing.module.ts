@@ -6,15 +6,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { EventListComponent } from './components/event-list/event-list.component';
 import { EventDetailComponent } from './components/event-detail/event-detail.component';
-
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
-
-
-
-
 
 const routes: Routes = [
   
@@ -22,14 +17,12 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
   {path:'dashboard', component:DashboardComponent},
-  {path:'home', component:HomeComponent},
+  {path:'', component:HomeComponent},
   {path:'events', component:EventListComponent },
   {path:'events/getEventById/:id', component:EventDetailComponent},
   {path:'reset-password/request', component:ForgotPasswordComponent},
   {path:'reset-password/reset', component:ResetPasswordComponent},
-  {path: 'profile', component: ProfileComponent },
-  {path:'', redirectTo:'home', pathMatch:'full'},
-  { path: '**', redirectTo: 'home' },
+  {path: 'profile', component: ProfileComponent },  
 ];
 
 @NgModule({

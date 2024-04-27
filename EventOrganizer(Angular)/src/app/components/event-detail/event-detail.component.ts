@@ -22,8 +22,6 @@ export class EventDetailComponent {
   capacity:number;
   fullName: string;
   cancelMessage:string;
-  
-
 
   constructor(
     private route: ActivatedRoute,
@@ -33,7 +31,6 @@ export class EventDetailComponent {
 
     ngOnInit(): void {
 
-      /*this.fullName=this.userService.fullName;*/
       this.userEmail = this.userService.userEmail;
       this.eventId = +this.route.snapshot.paramMap.get('id');
       this.eventService.getEventById(this.eventId).subscribe(
@@ -46,17 +43,13 @@ export class EventDetailComponent {
       );      
       const storedRsvpList = localStorage.getItem(`rsvpList_${this.eventId}`);
       this.rsvpList = storedRsvpList ? JSON.parse(storedRsvpList) : [];
-      this.fullName = localStorage.getItem('fullName') || '';
-      
-      
+      this.fullName = localStorage.getItem('fullName') || '';      
 
-    // Fetch event details using the eventId
     this.eventService.getEventById(this.eventId).subscribe(
       (event: any) => {
         if (event) {
           this.event = event;
         } else {
-          // Handle the case where the event is not found
           console.error('Event not found');
         }
       }

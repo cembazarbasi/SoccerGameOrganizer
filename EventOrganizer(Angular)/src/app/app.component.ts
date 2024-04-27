@@ -8,27 +8,24 @@ import { AuthService } from './service/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-login() {
-throw new Error('Method not implemented.');
-}
+  login() {
+    throw new Error('Method not implemented.');
+  }
   title = 'angulareventplanner';
-  
+
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   logout() {
-    // Call your authentication service's logout method
     this.authService.logout().subscribe(
       () => {
-        // Perform any additional actions after successful logout
         console.log('Logout successful');
       },
       (error) => {
-        // Handle logout error
         console.error('Logout failed', error);
       }
     );
   }
-  
+
 }

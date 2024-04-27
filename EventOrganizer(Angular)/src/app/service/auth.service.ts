@@ -1,48 +1,44 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable,  tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 
-const BASE_URL = 'http://bayareasoccerevents.com';
+const BASE_URL = 'http://localhost:8080';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  
+
   private admin = {
     adminEmail: 'cembazar@gmail.com',
     adminPassword: 42171903
   };
 
   isLoggedIn(): boolean {
-    
+
     const token = localStorage.getItem('JWT');
     return !!token;
-  }  
+  }
   isAllowedForDashboard(userEmail: string): boolean {
-    // Check if the userEmail is allowed to access the dashboard
-    return userEmail === 'cembazar@gmail.com'; // Modify this condition as needed
+    return userEmail === 'cembazar@gmail.com';
   }
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     this.route.params.subscribe(params => {
       const token = params['token'];
-      
+
     });
   }
 
-  
   getUserEmail(): string {
     return this.admin.adminEmail;
   };
 
-  
   getUserPassword(): number {
     return this.admin.adminPassword;
   };
-
 
   requestPasswordReset(email: string): Observable<void> {
     const headers = new HttpHeaders({
@@ -63,8 +59,6 @@ export class AuthService {
     return this.http.get<string>(url, { headers: headers });
   }
 
-
-
   resetPassword(token: string, newPassword: string): Observable<any> {
     const body = new URLSearchParams();
     body.set('token', token);
@@ -79,60 +73,42 @@ export class AuthService {
     return this.http.post(`${BASE_URL}/reset-password/reset`, body.toString(), options);
   }
 
-
   signup(signupRequest: any): Observable<any> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',      
+      'Content-Type': 'application/json',
     });
-    return this.http.post(BASE_URL + "/register", signupRequest, {headers} )
+    return this.http.post(BASE_URL + "/register", signupRequest, { headers })
   }
-
-  
 
   login(loginRequest: any): Observable<any> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',      
+      'Content-Type': 'application/json',
     });
 
-    return this.http.post(BASE_URL + "/login", loginRequest,  {headers} ).pipe(
+    return this.http.post(BASE_URL + "/login", loginRequest, { headers }).pipe(
       tap(response => {
-        if( response.jwtToken){
-          
+        if (response.jwtToken) {
+
           localStorage.setItem('email', response.name);
           console.log('Email stored in localStorage:', response.email);
         }
       })
     );
-   
   }
 
-
-  
-    logout(): Observable<any> {
-      const logoutUrl = `${BASE_URL}/logout`;
-      
-      // Get the JWT token from localStorage
-      const jwtToken = localStorage.getItem('JWT');
-  
-      // Include the Authorization header with the Bearer token
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${jwtToken}`
-      });
-  
-      // Make the HTTP request with the headers
-      return this.http.post(logoutUrl, {}, { headers });
-    }
-
-  
+  logout(): Observable<any> {
+    const logoutUrl = `${BASE_URL}/logout`;
+    const jwtToken = localStorage.getItem('JWT');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${jwtToken}`
+    });
+    return this.http.post(logoutUrl, {}, { headers });
+  }
 
   getUserProfile(): Observable<any> {
     return this.http.get<any>(`${BASE_URL}/profile`);
   }
- 
 
-  
-
-  
   hello(): Observable<any> {
     return this.http.get(BASE_URL + '/hello', {
       headers: this.createAuthorizationHeader()
@@ -147,6 +123,4 @@ export class AuthService {
     }
     return null;
   }
-
-  
 }

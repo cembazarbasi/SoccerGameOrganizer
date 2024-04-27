@@ -11,32 +11,26 @@ import { AuthService } from 'src/app/service/auth.service';
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
   responseMessage: string;
-  
-  
   errorMessage: string;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private ngZone: NgZone ) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private ngZone: NgZone) {
     this.forgotPasswordForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
     });
   }
 
   requestPasswordReset() {
-    // Ensure the email is taken from the form value
     const email = this.forgotPasswordForm.get('email').value;
 
     this.authService.requestPasswordReset(email).subscribe(
       response => {
         console.log('Password reset success:', response);
         this.responseMessage = 'We sent a reset link succesfully through your email.';
-    
-        
       },
       error => {
         console.error('Error sending password reset email', error);
-    
+
         if (error.status === 200) {
-          
           this.responseMessage = 'We sent a reset link through your email. Please go to your email.';
           setTimeout(() => {
             this.ngZone.run(() => {
@@ -47,10 +41,8 @@ export class ForgotPasswordComponent {
         } else if (error.status === 400) {
           this.errorMessage = 'Please provide another email.';
         } else {
-          
         }
       }
     );
-    
   }
 }
